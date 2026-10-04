@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f2f7">
+  <meta name="description" content="QuestMaker，制作你的绘画问卷。">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>QuestMaker · 制作你的绘画问卷</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./vendor/lucide.min.js"></script>
+  <script defer src="./vendor/html2canvas.min.js"></script>
+  <script defer src="./vendor/iro.min.js"></script>
+  <script defer src="./export-delivery.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <button id="homeButton" class="brand" aria-label="QuestMaker 首页"><i data-lucide="panels-top-left"></i><span class="brand-name">QuestMaker</span></button>
+    <span id="breadcrumb" class="breadcrumb"></span>
+    <div id="editorActions" class="header-actions" hidden>
+      <button id="undoButton" class="icon-button" aria-label="撤销" data-tooltip="撤销"><i data-lucide="undo-2"></i></button>
+      <button id="redoButton" class="icon-button" aria-label="重做" data-tooltip="重做"><i data-lucide="redo-2"></i></button>
+      <button id="exportButton" class="primary" aria-label="导出图片" data-tooltip="导出图片"><i data-lucide="download"></i><span class="export-label">导出图片</span></button>
+    </div>
+  </header>
+  <main id="homeView" class="home-view">
+    <div class="home-heading"><h1>QuestMaker</h1><h2>选择一种模式快速开始</h2></div>
+    <div id="modes" class="modes" aria-label="选择模式"></div>
+    <section class="home-templates" aria-labelledby="templatesHeading"><h2 id="templatesHeading">从模板开始编辑</h2><div id="templates" class="templates"></div></section>
+    <footer class="home-footer">&copy; 2026 puzzleG726 · QuestMaker · <a href="./LICENSE" target="_blank" rel="noopener">版权声明</a> · <a href="mailto:feedback@questmaker.cn">帮助与反馈</a></footer>
+  </main>
+  <main id="editorView" hidden>
+    <div class="toolbar">
+      <div class="tool-group">
+        <label class="style-picker"><i data-lucide="type"></i><select id="textStyle" aria-label="文字样式"><option value="title1">Title 1</option><option value="title2">Title 2</option><option value="body" selected>Body</option></select></label>
+        <label class="color-tool" data-tooltip="文字颜色"><i data-lucide="baseline"></i><input id="textColor" type="color" value="#343139" aria-label="文字颜色"></label>
+        <button id="boldButton" class="icon-button" aria-label="加粗" data-tooltip="加粗"><i data-lucide="bold"></i></button>
+        <button class="icon-button" data-align="left" aria-label="左对齐" data-tooltip="左对齐"><i data-lucide="align-left"></i></button>
+        <button class="icon-button" data-align="center" aria-label="居中" data-tooltip="居中"><i data-lucide="align-center"></i></button>
+        <button class="icon-button" data-align="right" aria-label="右对齐" data-tooltip="右对齐"><i data-lucide="align-right"></i></button>
+      </div>
+      <div class="tool-group extra-tools">
+        <button id="addText"><i data-lucide="type"></i>添加文本框</button>
+        <button id="toggleTitleFrame" hidden><i data-lucide="panel-top"></i>添加标题框</button>
+        <button id="linkMode" hidden><i data-lucide="move-up-right"></i>连线</button>
+      </div>
+      <div id="lineToolbar" class="line-toolbar" hidden aria-label="连线编辑"></div>
+    </div>
+    <div class="workspace">
+      <section class="stage" aria-label="问卷编辑画布">
+        <div id="canvasViewport" tabindex="0" aria-label="画布查看区域"><div id="sheetFrame"><article id="sheet" class="sheet"></article>
+          <div class="canvas-info"><span id="dimensions"></span><button id="zoomFit" class="icon-button" aria-label="适应屏幕" data-tooltip="适应屏幕"><i data-lucide="maximize"></i></button></div>
+          <button class="canvas-resize canvas-resize-corner" data-resize-canvas="both" aria-label="调整画布宽高"><i data-lucide="move-diagonal-2"></i></button>
+        </div></div>
+        <div class="canvas-zoom" aria-label="画布缩放">
+          <button id="zoomOut" class="icon-button" aria-label="缩小画布" data-tooltip="缩小画布"><i data-lucide="zoom-out"></i></button>
+          <input id="zoomSlider" type="range" min="0" max="1000" step="1" aria-label="画布观看缩放">
+          <output id="zoomLevel" aria-label="当前缩放比例">100%</output>
+          <button id="zoomIn" class="icon-button" aria-label="放大画布" data-tooltip="放大画布"><i data-lucide="zoom-in"></i></button>
+        </div>
+      </section>
+      <aside id="mobileInspector" class="properties" aria-label="编辑设置">
+        <button id="inspectorHandle" class="inspector-handle" aria-label="展开编辑栏" aria-controls="inspectorContent" aria-expanded="false"><span class="inspector-grabber" aria-hidden="true"></span><span>编辑设置</span><i data-lucide="chevron-up"></i></button>
+        <div id="inspectorContent" class="inspector-content"><section id="mobileColorDock" hidden><div class="mobile-color-heading"><h3>文字颜色</h3><button id="closeMobileColor" class="icon-button" aria-label="关闭文字色板"><i data-lucide="x"></i></button></div></section><div id="selectionProperties"></div><div id="layoutProperties"></div></div>
+      </aside>
+    </div>
+  </main>
+  <input id="imageUpload" type="file" accept="image/*" hidden>
+  <dialog id="cropDialog" aria-labelledby="cropTitle">
+    <div class="dialog-heading"><h2 id="cropTitle">裁剪图片</h2><button id="closeCrop" class="icon-button" aria-label="关闭裁剪"><i data-lucide="x"></i></button></div>
+    <div class="crop-surface"><canvas id="cropCanvas" tabindex="0" role="img" aria-label="图片裁剪区域，可拖动选区或四角调整，方向键移动选区"></canvas></div>
+    <div class="crop-settings"><label class="field">裁剪比例<select id="cropAspect"><option value="frame">图片框比例</option><option value="free">自由比例</option><option value="1">1:1</option></select></label><output id="cropDimensions" aria-live="polite"></output><button id="resetCrop" class="icon-button" aria-label="恢复原图" data-tooltip="恢复原图"><i data-lucide="rotate-ccw"></i></button></div>
+    <div class="dialog-actions"><button id="cancelCrop">取消</button><button id="applyCrop" class="primary"><i data-lucide="check"></i>应用裁剪</button></div>
+  </dialog>
+  <dialog id="exportDialog">
+    <form method="dialog"><div class="dialog-heading"><h2>导出图片</h2><button class="icon-button" aria-label="关闭"><i data-lucide="x"></i></button></div></form>
+    <label class="field">图片格式<select id="exportFormat"><option value="png">PNG</option><option value="jpeg">JPG</option><option value="webp">WebP</option></select></label>
+    <label class="field">清晰度<select id="exportScale"><option value="2">高清 · 2 倍</option><option value="1">标准 · 1 倍</option><option value="3">超清 · 3 倍</option></select></label>
+    <p id="exportDimensions" class="secondary"></p><button id="downloadButton" class="primary full"><i data-lucide="image"></i>生成预览</button>
+  </dialog>
+  <dialog id="exportPreview" aria-labelledby="exportPreviewTitle">
+    <h2 id="exportPreviewTitle">导出预览</h2>
+    <div class="export-preview-image"><img id="exportPreviewImage" alt="已生成的问卷图片"></div>
+    <p class="export-preview-hint">长按图片保存至手机相册</p>
+    <p id="exportPreviewStatus" class="export-preview-hint" role="status" aria-live="polite" hidden></p>
+    <div class="export-preview-actions">
+      <button id="saveExport" class="primary"><i data-lucide="download"></i>保存图片</button>
+      <button id="shareExport"><i data-lucide="share-2"></i>分享图片</button>
+      <button id="closeExportPreview"><i data-lucide="x"></i>关闭</button>
+    </div>
+  </dialog>
+  <div id="colorProperties" class="color-popover" role="dialog" aria-label="选择颜色" hidden></div>
+  <div id="customColorPopover" class="color-popover custom-color-popover" role="dialog" aria-label="自定义颜色" hidden>
+    <div class="custom-color-heading"><strong>自定义颜色</strong><button id="closeCustomColor" class="icon-button" aria-label="关闭自定义颜色"><i data-lucide="x"></i></button></div>
+    <div id="customColorPicker" aria-label="颜色与色相"></div>
+    <div class="custom-rgb-fields">
+      <label>R<input id="customColorR" type="number" min="0" max="255" step="1" aria-label="红色 R"></label>
+      <label>G<input id="customColorG" type="number" min="0" max="255" step="1" aria-label="绿色 G"></label>
+      <label>B<input id="customColorB" type="number" min="0" max="255" step="1" aria-label="蓝色 B"></label>
+    </div>
+    <label class="custom-hex-field">HEX<input id="customColorHex" type="text" maxlength="7" spellcheck="false" autocomplete="off" aria-label="HEX 颜色"></label>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e8a5da1b29c840f6a7d2bea1200b0b64"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
