@@ -99,6 +99,7 @@
 .sheet .respondent{font-size:17px}
 .sheet-grid-single>.watermark{padding-top:4px;margin-top:-14px}
 #canvasViewport{max-width:100%;min-width:0;overflow:auto;padding:6px 0 12px;overscroll-behavior-x:contain}
+.draft-resume{margin-left:auto;flex:none}.draft-resume button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;min-height:44px;white-space:nowrap}.draft-resume svg{width:18px;height:18px}.draft-status-bar{display:flex;align-items:center;gap:8px;min-height:30px;padding:4px 16px;background:#fff;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);overflow-wrap:anywhere}.draft-status-bar[data-state="error"],.draft-status-bar[data-state="conflict"]{color:#a12d36}.draft-status-bar .icon-button{width:28px;height:28px;min-height:28px;min-width:28px;padding:4px}
 .stage{align-self:start;width:100%}
 #canvasViewport{padding:16px;touch-action:pan-x pan-y;overscroll-behavior:contain;scrollbar-gutter:stable;overflow-anchor:none}
 .canvas-info{position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:12px;line-height:20px;color:var(--muted);transform-origin:top left;font-variant-numeric:tabular-nums}
@@ -459,10 +460,10 @@
 .crop-settings .field{margin:0;min-width:140px;flex:1}
 .crop-settings output{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
-#exportPreview{width:820px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:20px;overflow:auto;-webkit-user-select:none;user-select:none}
+#exportPreview{width:820px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:20px;overflow:auto;-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:default}
 #exportPreview h2{margin:0 0 16px;font-size:20px}
 .export-preview-image{display:flex;justify-content:center;min-width:0;background:#f4f2f7}
-#exportPreviewImage{display:block;max-width:100%;width:auto;height:auto;max-height:calc(100dvh - 180px);object-fit:contain;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none;touch-action:auto;pointer-events:auto}
+#exportPreviewImage{display:block;max-width:100%;width:auto;height:auto;max-height:calc(100dvh - 180px);object-fit:contain;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto;touch-action:auto;pointer-events:auto}
 .export-preview-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
 .export-preview-hint{margin:12px 0 0;text-align:center;font-size:13px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
 .export-preview-actions button{min-height:44px;min-width:44px}
