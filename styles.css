@@ -460,6 +460,13 @@
 .crop-settings .field{margin:0;min-width:140px;flex:1}
 .crop-settings output{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+#draftEntryDialog{width:360px}
+#draftEntryDialog::backdrop{background:#29223233}
+#draftEntryDialog .dialog-heading{gap:12px;margin-bottom:16px}
+#draftEntryDialog h2{font-size:20px;line-height:1.4;margin:0}
+#draftEntryDialog p{line-height:1.6;overflow-wrap:anywhere}
+#draftEntryDialog .dialog-actions{flex-wrap:wrap}
+#draftEntryDialog .dialog-actions button{min-height:44px;flex:1 1 96px}
 #exportPreview{width:820px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:20px;overflow:auto;-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:default}
 #exportPreview h2{margin:0 0 16px;font-size:20px}
 .export-preview-image{display:flex;justify-content:center;min-width:0;background:#f4f2f7}

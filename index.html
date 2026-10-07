@@ -240,6 +240,16 @@
         </aside>
       </div>
     </main>
+    <dialog id="draftEntryDialog" aria-labelledby="draftEntryTitle">
+      <div class="dialog-heading">
+        <h2 id="draftEntryTitle">继续上次编辑？</h2>
+      </div>
+      <p id="draftEntryMessage" hidden></p>
+      <div class="dialog-actions">
+        <button id="newDraftEntry">重新开始</button>
+        <button id="continueDraftEntry" class="primary" autofocus>继续编辑</button>
+      </div>
+    </dialog>
     <input id="imageUpload" type="file" accept="image/*" hidden />
     <dialog id="cropDialog" aria-labelledby="cropTitle">
       <div class="dialog-heading">
