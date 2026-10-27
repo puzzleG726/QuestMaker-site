@@ -1,0 +1,88 @@
+QuestMaker editor font assets, retrieved 2026-10-26
+
+These third-party fonts retain their own licenses, not QuestMaker's license.
+Unmodified WOFF2 shards are distributed by ZeoSeven Fonts (cn-font-split).
+CSS retains the distributor's copyright metadata. Only local() lookups were
+removed so a different locally installed font cannot override these assets.
+The application loads a family's CSS only when used, and the browser loads
+only Unicode shards needed by displayed text. No text is sent to a font API.
+See manifest.json for the exact file list and SHA-256 checksums.
+
+15: Mitimasu / 道须手写体, version 2.00, MASUDA mitiya (增田道也).
+MIT. See Mitimasu-LICENSE.txt and original Mitimasu-readme.txt (Shift-JIS
+decoded to UTF-8 without changing its content).
+https://fonts.zeoseven.com/items/15/
+https://blog.masuseki.com/?p=197
+https://www.masuseki.com/works/mitimasu.zip
+
+855: Isemin / 异世明, version 1.01, FLOP DESIGN; derived from Source.
+Copyright(c)2017 Adobe Systems Incorporated, Reserved Font Name 'Source'.
+SIL OFL 1.1; see OFL-1.1.txt and the original metadata in 855/font.css.
+https://fonts.zeoseven.com/items/855/
+https://flopdesign.booth.pm/items/2291468
+
+315: PixelMplus12 Regular, version 2013.0602, itouhiro / M+ FONTS PROJECT.
+Copyright (C) 2013 itouhiro; Copyright (C) 2002-2013 M+ FONTS PROJECT.
+M+ FONT LICENSE; see PixelMplus-LICENSE.txt.
+https://fonts.zeoseven.com/items/315/
+https://github.com/itouhiro/PixelMplus
+
+528: Minh Nguyen / 明源, version 1.100, TKYK_nkl / Han-Nom Revival Committee.
+Copyright 2017-2022 Adobe, Reserved Font Name 'Source'.
+SIL OFL 1.1; see OFL-1.1.txt and original metadata in 528/font.css.
+https://fonts.zeoseven.com/items/528/
+https://github.com/TKYKmori/Minh-Nguyen
+
+142: Tanugo-S-TTF Regular, version 1.100, Tanukizamurai.
+Copyright 2020 The Tanugo Project Authors.
+SIL OFL 1.1; OFL-1.1.txt is the original license from this project.
+https://fonts.zeoseven.com/items/142/
+https://github.com/tanukifont/Tanugo
+
+2419: Kaibunsyo / 怪闻书, version 1.000, lavsic.
+Copyright 2014-2021 Adobe, Reserved Font Name 'Source'.
+SIL OFL 1.1; see OFL-1.1.txt and original metadata in 2419/font.css.
+https://fonts.zeoseven.com/items/2419/
+https://booth.pm/ja/items/8356578
+
+2115: GenRyuMin2 TC R / 源流明体丹 Regular, version 2.100, ButTaiwan.
+SIL OFL 1.1; see GenRyu-LICENSE.txt and original metadata in 2115/font.css.
+https://fonts.zeoseven.com/items/2115/
+https://github.com/ButTaiwan/genryu-font
+
+The seven choices use the linked pages' main embedded variants, not every
+weight or regional variant. Missing characters fall back to system fonts.
+
+2026-10-28 font choices update:
+Visible choices: Isemin (Traditional Chinese label), Minh Nguyen, GenRyuMin2 TC R,
+JinzisheZhenhao, KaitouYokokuGothic Heavy. Mitimasu, PixelMplus12,
+Tanugo-S-TTF and Kaibunsyo remain bundled for existing documents only;
+their original files, checksums and licenses are retained.
+
+320: JinzisheZhenhao / 金字社真好体, Version 1.00, Bold.
+Copyright: Beijing Founder Electronics Co.,Ltd. , JIN Liuqing.
+JINZISHE is a trademark of JIN Liuqing registered in China.
+Based on DouyinSansBold. SIL OFL 1.1; see JinzisheZhenhao-LICENSE.txt.
+Author repository: https://gitee.com/typeface-cn/typeface_open_font
+Requested page: https://fonts.zeoseven.com/items/320/
+Distribution CSS: https://fontsapi.zeoseven.com/320/main/result.css
+Original 22 WOFF2 shards retained unchanged; only CSS local() lookups removed.
+Retrieved 2026-10-28.
+
+1890 (local folder id): KaitouYokokuGothic Heavy / 怪盗予告黑体,
+Version 1.001, lavsic. Original font name record 0:
+© 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+Original name records 13/14 specify SIL OFL 1.1. See KaitouYokokuGothic-LICENSE.txt.
+Requested page: https://www.100font.com/thread-1890.htm
+Author page: https://lavsic.booth.pm/items/7920588
+Author lists identical font contents in the free and donation versions.
+Public unmodified TTF mirror (fixed revision):
+https://raw.githubusercontent.com/alfianchii/colorless-world/08256d7c2578ded376d7db202b92a388bf681d8b/public/fonts/KaitouYokokuGothic.ttf
+Original bytes: 21897756
+Original SHA-256: 12899834d3497064f6090462030202efce484f83bfc75ee51e7a12082a80058e
+Changes: Unicode subsets generated with fontTools 4.68.0 / Brotli 1.2.1;
+WOFF2 conversion, name/license records retained, no glyph design changes.
+Common GB2312 characters separated from rare characters for on-demand loading.
+License file combines the original font copyright/license notices and the
+unchanged OFL 1.1 text; it is not represented as a file shipped by the author.
+Retrieved and converted 2026-10-28.

@@ -1,0 +1,12 @@
+Hero Patterns — Steve Schoger
+Source: https://heropatterns.com/ (official js/app.js), retrieved 2026-10-28
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Included patterns: Hideout, Graph Paper, Tic Tac Toe, Circuit Board,
+Intersecting Circles, Polka Dots.
+
+Changes: SVG paths retained; foreground colours use a user-selected colour,
+fill opacity set to 0.6; encoded as local SVG data URLs for offline rendering/export.
+Attribution is also shown on about.html, linked from home and editor settings.
+These pattern assets remain subject to their original license, separate from QuestMaker.

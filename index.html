@@ -7,20 +7,22 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="theme-color" content="#f4f2f7" />
-    <meta name="description" content="QuestMaker，制作你的绘画问卷。" />
+    <meta name="description" content="QuestMaker，制作你的创意问卷。" />
     <meta name="referrer" content="no-referrer" />
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js https://us-assets.i.posthog.com/static/array.js 'sha256-UF09mG0k8wJTVuy6vrpBtaMgcgcZkTFCUw3t79ejUH0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src https://cloudflareinsights.com https://us.i.posthog.com; object-src 'none'; base-uri 'none'; form-action 'none'"
     />
-    <title>QuestMaker · 制作你的绘画问卷</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>QuestMaker · 制作你的创意问卷</title>
+    <link rel="stylesheet" href="./styles.css?v=20261028-home-palette2" />
     <script defer src="./vendor/lucide.min.js"></script>
     <script defer src="./vendor/html2canvas.min.js"></script>
     <script defer src="./vendor/iro.min.js"></script>
     <script defer src="./export-delivery.js"></script>
     <script defer src="./draft-store.js"></script>
-    <script defer src="./app.js"></script>
+    <script defer src="./fonts.js?v=20261028-home-palette2"></script>
+    <script defer src="./canvas-patterns.js"></script>
+    <script defer src="./app.js?v=20261028-home-palette2"></script>
     <script defer src="./analytics.js"></script>
   </head>
   <body>
@@ -35,6 +37,10 @@
           <i data-lucide="history"></i><span>继续上次草稿</span>
         </button>
       </div>
+      <nav id="homeLinks" class="home-links" aria-label="帮助与资源">
+        <button id="helpButton" type="button" popovertarget="helpPopover" aria-controls="helpPopover" aria-haspopup="dialog" aria-expanded="false">帮助与反馈</button>
+        <a class="credits-link" href="./about.html" target="_blank" rel="noopener noreferrer">第三方资源与许可</a>
+      </nav>
       <div id="editorActions" class="header-actions" hidden>
         <button
           id="undoButton"
@@ -65,32 +71,21 @@
     </header>
     <main id="homeView" class="home-view">
       <div class="home-heading">
-        <h1>QuestMaker</h1>
-        <h2>选择一种模式快速开始</h2>
+        <h1>QuestMaker<span class="home-cursor" aria-hidden="true">_</span></h1>
+        <h2>选择一种模式开始</h2>
+        <p class="home-intro">选一种布局，添加图片和文字，制作你的创意问卷。</p>
       </div>
       <div id="modes" class="modes" aria-label="选择模式"></div>
       <section class="home-templates" aria-labelledby="templatesHeading">
-        <h2 id="templatesHeading">从模板开始编辑</h2>
+        <h2 id="templatesHeading">选择一种模版开始</h2>
+        <p class="template-intro">已有主题和排版，打开后即可修改。</p>
         <div id="templates" class="templates"></div>
       </section>
       <footer class="home-footer">
-        &copy; 2026 puzzleG726 · QuestMaker · All Rights Reserved<br />帮助与反馈请邮件help@questmaker.cn
+        <span>&copy; 2026 puzzleG726 · QuestMaker · All Rights Reserved</span>
       </footer>
     </main>
     <main id="editorView" hidden>
-      <div class="draft-status-bar">
-        <span id="draftStatus" role="status" aria-live="polite"
-          >正在读取草稿</span
-        ><button
-          id="retryDraft"
-          class="icon-button"
-          aria-label="重试保存草稿"
-          data-tooltip="重试保存草稿"
-          hidden
-        >
-          <i data-lucide="refresh-cw"></i>
-        </button>
-      </div>
       <div class="toolbar">
         <div class="tool-group">
           <label class="style-picker"
@@ -144,8 +139,8 @@
         </div>
         <div class="tool-group extra-tools">
           <button id="addText"><i data-lucide="type"></i>添加文本框</button>
-          <button id="toggleTitleFrame" hidden>
-            <i data-lucide="panel-top"></i>添加标题框
+          <button id="toggleTitleFrame" class="title-frame-switch" role="switch" aria-checked="true" hidden>
+            <span id="titleFrameState">标题框显示中</span><span class="switch-track" aria-hidden="true"></span>
           </button>
           <button id="linkMode" hidden>
             <i data-lucide="move-up-right"></i>连线
@@ -160,6 +155,18 @@
       </div>
       <div class="workspace">
         <section class="stage" aria-label="问卷编辑画布">
+          <div class="draft-status-bar" hidden>
+            <span id="draftStatus" role="status" aria-live="polite" aria-atomic="true"></span>
+            <button
+              id="retryDraft"
+              class="icon-button"
+              aria-label="重试保存草稿"
+              data-tooltip="重试保存草稿"
+              hidden
+            >
+              <i data-lucide="refresh-cw"></i>
+            </button>
+          </div>
           <div id="canvasViewport" tabindex="0" aria-label="画布查看区域">
             <div id="sheetFrame">
               <article id="sheet" class="sheet"></article>
@@ -222,6 +229,11 @@
             <span class="inspector-grabber" aria-hidden="true"></span
             ><span>编辑设置</span><i data-lucide="chevron-up"></i>
           </button>
+          <div class="inspector-tabs" role="tablist" aria-label="设置分类">
+            <button id="objectSettingsTab" type="button" role="tab" data-inspector-tab="object" aria-controls="objectSettings" aria-selected="false" tabindex="-1">对象设置</button>
+            <button id="modeSettingsTab" type="button" role="tab" data-inspector-tab="mode" aria-controls="modeSettings" aria-selected="true">模式设置</button>
+            <button id="canvasSettingsTab" type="button" role="tab" data-inspector-tab="canvas" aria-controls="canvasSettings" aria-selected="false" tabindex="-1">画布设置</button>
+          </div>
           <div id="inspectorContent" class="inspector-content">
             <section id="mobileColorDock" hidden>
               <div class="mobile-color-heading">
@@ -235,12 +247,33 @@
                 </button>
               </div>
             </section>
-            <div id="selectionProperties"></div>
-            <div id="layoutProperties"></div>
+            <section id="objectSettings" class="inspector-group" aria-labelledby="objectSettingsHeading">
+              <h2 id="objectSettingsHeading" class="inspector-group-heading">对象设置</h2>
+              <div id="selectionProperties"></div>
+            </section>
+            <div id="layoutProperties">
+              <section id="modeSettings" class="inspector-group" aria-labelledby="modeSettingsHeading">
+                <h2 id="modeSettingsHeading" class="inspector-group-heading">模式设置</h2>
+                <div id="modeProperties"></div>
+              </section>
+              <section id="canvasSettings" class="inspector-group" aria-labelledby="canvasSettingsHeading">
+                <h2 id="canvasSettingsHeading" class="inspector-group-heading">画布设置</h2>
+                <div id="canvasProperties"></div>
+              </section>
+            </div>
+            <div class="inspector-about"><a class="credits-link" href="./about.html" target="_blank" rel="noopener noreferrer">第三方资源与许可</a></div>
           </div>
         </aside>
       </div>
     </main>
+    <div id="helpPopover" class="help-popover" popover="auto" role="dialog" aria-labelledby="helpPopoverTitle">
+      <div class="help-popover-heading">
+        <h2 id="helpPopoverTitle">帮助与反馈</h2>
+        <button class="icon-button" type="button" popovertarget="helpPopover" popovertargetaction="hide" aria-label="关闭帮助与反馈"><i data-lucide="x"></i></button>
+      </div>
+      <p>交流企鹅群：<span>1102852024</span></p>
+      <p>问题反馈邮箱：<a href="mailto:help@questmaker.cn">help@questmaker.cn</a></p>
+    </div>
     <dialog id="draftEntryDialog" aria-labelledby="draftEntryTitle">
       <div class="dialog-heading">
         <h2 id="draftEntryTitle">继续上次编辑？</h2>
@@ -315,7 +348,7 @@
     <dialog id="exportPreview" aria-labelledby="exportPreviewTitle">
       <h2 id="exportPreviewTitle">导出预览</h2>
       <div class="export-preview-image">
-        <img id="exportPreviewImage" alt="已生成的问卷图片" />
+        <img id="exportPreviewImage" data-src="generated-on-export" alt="已生成的问卷图片" />
       </div>
       <p class="export-preview-hint">长按图片保存至本地相册</p>
       <p

@@ -1,0 +1,5 @@
+Font glyph coverage checked 2026-10-28 using fontTools 4.68.0.
+GB2312 Hanzi reference: 6763 characters.
+320: GB2312 Hanzi coverage 6763/6763, 7715 total mapped codepoints.
+1890: GB2312 Hanzi coverage 6763/6763, 44812 total mapped codepoints.
+1890 subsets preserve every codepoint in the original TTF best Unicode cmap.
