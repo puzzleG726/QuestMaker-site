@@ -886,4 +886,20 @@ body:has(#editorView:not([hidden])) #homeLinks{display:none}
 .help-popover p+p{margin-top:8px}
 .help-popover p{overflow-wrap:anywhere}
 .help-popover a{color:var(--accent-hover);text-underline-offset:3px}
-@media(max-width:650px){.home-links{order:4;flex-basis:100%;justify-content:flex-end;gap:20px}.home-links>button,.home-links>.credits-link{font-size:12px}.help-popover .icon-button{min-width:44px;min-height:44px}}
+@media(max-width:650px){
+  body:has(#homeView:not([hidden])) .app-header{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:8px 12px;border-bottom:0;min-height:60px}
+  body:has(#homeView:not([hidden])) .brand{grid-column:1;grid-row:1;font-size:18px;gap:6px;min-height:44px}
+  body:has(#homeView:not([hidden])) .brand svg{width:20px;height:20px}
+  .home-links{grid-column:2;grid-row:1;order:0;flex-basis:auto;justify-content:flex-end;gap:12px}
+  .home-links>button,.home-links>.credits-link{font-size:12px}
+  body:has(#homeView:not([hidden])) .draft-resume{grid-column:1/-1;grid-row:2;justify-self:end;margin-left:0}
+  .home-view{padding-top:8px}
+  .template-mode{display:block;margin:4px 0 0;white-space:nowrap}
+  .template-mode-separator{padding-inline:0 4px}
+  .help-popover .icon-button{min-width:44px;min-height:44px}
+}
+@media(max-width:360px){
+  body:has(#homeView:not([hidden])) .brand{font-size:16px}
+  .home-links{gap:8px}
+  .home-links>button,.home-links>.credits-link{font-size:11px}
+}
