@@ -14,15 +14,15 @@
       content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js https://us-assets.i.posthog.com/static/array.js 'sha256-UF09mG0k8wJTVuy6vrpBtaMgcgcZkTFCUw3t79ejUH0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src https://cloudflareinsights.com https://us.i.posthog.com; object-src 'none'; base-uri 'none'; form-action 'none'"
     />
     <title>QuestMaker · 制作你的创意问卷</title>
-    <link rel="stylesheet" href="./styles.css?v=20261028-mobile-home1" />
+    <link rel="stylesheet" href="./styles.css?v=20261028-mobile-controls2" />
     <script defer src="./vendor/lucide.min.js"></script>
     <script defer src="./vendor/html2canvas.min.js"></script>
     <script defer src="./vendor/iro.min.js"></script>
-    <script defer src="./export-delivery.js"></script>
+    <script defer src="./export-delivery.js?v=20261028-photo-save1"></script>
     <script defer src="./draft-store.js"></script>
     <script defer src="./fonts.js?v=20261028-home-palette2"></script>
     <script defer src="./canvas-patterns.js"></script>
-    <script defer src="./app.js?v=20261028-home-palette2"></script>
+    <script defer src="./app.js?v=20261028-mobile-controls2"></script>
     <script defer src="./analytics.js"></script>
   </head>
   <body>
@@ -190,6 +190,7 @@
               </button>
             </div>
           </div>
+          <div id="mobileCanvasControls" class="mobile-canvas-controls" aria-label="画布尺寸与显示"></div>
           <div class="canvas-zoom" aria-label="画布缩放">
             <button
               id="zoomOut"
@@ -241,7 +242,7 @@
                 <button
                   id="closeMobileColor"
                   class="icon-button"
-                  aria-label="关闭文字色板"
+                  aria-label="关闭色板"
                 >
                   <i data-lucide="x"></i>
                 </button>
@@ -350,7 +351,7 @@
       <div class="export-preview-image">
         <img id="exportPreviewImage" data-src="generated-on-export" alt="已生成的问卷图片" />
       </div>
-      <p class="export-preview-hint">长按图片保存至本地相册</p>
+      <p id="exportPreviewHint" class="export-preview-hint">长按图片保存至本地相册</p>
       <p
         id="exportPreviewStatus"
         class="export-preview-hint"

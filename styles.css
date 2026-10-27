@@ -604,10 +604,10 @@ color-scheme:light;--bg:#f6f5f8;--ink:#323039;--muted:#696271;--line:#e8e5ec;--a
 #draftEntryDialog p{line-height:1.6;overflow-wrap:anywhere}
 #draftEntryDialog .dialog-actions{flex-wrap:wrap}
 #draftEntryDialog .dialog-actions button{min-height:44px;flex:1 1 96px}
-#exportPreview{width:820px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:20px;overflow:auto;-webkit-user-select:auto;user-select:auto;-webkit-touch-callout:default}
+#exportPreview{width:820px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:20px;overflow:auto;-webkit-user-select:none;user-select:none;-webkit-touch-callout:default}
 #exportPreview h2{margin:0 0 16px;font-size:20px}
 .export-preview-image{display:flex;justify-content:center;min-width:0;background:var(--qm-export-preview-image-background)}
-#exportPreviewImage{display:block;max-width:100%;width:auto;height:auto;max-height:calc(100dvh - 180px);object-fit:contain;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto;touch-action:auto;pointer-events:auto}
+#exportPreviewImage{display:block;max-width:100%;width:auto;height:auto;max-height:calc(100dvh - 180px);object-fit:contain;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none;touch-action:auto;pointer-events:auto}
 .export-preview-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
 .export-preview-hint{margin:12px 0 0;text-align:center;font-size:13px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
 .export-preview-actions button{min-height:44px;min-width:44px}
@@ -699,7 +699,7 @@ input.color-trigger{appearance:none;-webkit-appearance:none;display:block;width:
   /* Keep native touch scrolling without iOS overlay indicators crossing the scaled artwork. */
   body.mobile-editor #canvasViewport{height:100%;padding:16px;scrollbar-gutter:auto;scrollbar-width:none}
   body.mobile-editor #canvasViewport::-webkit-scrollbar{display:none;width:0;height:0}
-  body.mobile-editor.mobile-palette-open #canvasViewport{padding-bottom:calc(var(--mobile-palette-space,50dvh) + 16px)}
+
   .stage>.canvas-zoom{display:none}
   body.mobile-editor .properties{position:fixed;left:0;right:0;bottom:var(--mobile-bottom-inset,0px);z-index:90;height:calc(var(--inspector-height,56px) + env(safe-area-inset-bottom,0px));max-height:var(--mobile-visible-height,100dvh);padding:0 0 env(safe-area-inset-bottom,0px);display:flex;flex-direction:column;border:1px solid var(--line);border-bottom:0;border-radius:8px 8px 0 0;box-shadow:0 -4px 20px var(--qm-draft-status-bar-box-shadow);transition:none;overflow:hidden}
   body.mobile-editor .properties.inspector-dragging{transition:none;user-select:none}
@@ -902,4 +902,31 @@ body:has(#editorView:not([hidden])) #homeLinks{display:none}
   body:has(#homeView:not([hidden])) .brand{font-size:16px}
   .home-links{gap:8px}
   .home-links>button,.home-links>.credits-link{font-size:11px}
+}
+
+/* Mobile drawer reserves its actual height; the canvas remains an independent scroll area. */
+@media(max-width:650px){
+  html:has(body.mobile-editor){overflow:hidden;overscroll-behavior:none}
+  body.mobile-editor{overscroll-behavior:none}
+  body.mobile-editor.mobile-inspector-open>.app-header,body.mobile-editor.mobile-inspector-open #editorView>.toolbar{display:none}
+  body.mobile-editor .workspace{padding-bottom:calc(var(--mobile-inspector-space,56px) + env(safe-area-inset-bottom,0px))}
+  body.mobile-editor .stage{padding:0}
+  body.mobile-editor #canvasViewport{padding:0;overscroll-behavior:contain;touch-action:pan-x pan-y}
+  body.mobile-editor .sheet{box-shadow:none}
+  body.mobile-editor .inspector-tabs{touch-action:none;user-select:none;-webkit-user-select:none}
+  #mobileColorDock{margin:8px 0 16px;padding:10px 0 0;border-top:1px solid var(--line);border-bottom:0;min-width:0}
+  #mobileColorDock .mobile-color-heading{margin-bottom:4px}
+  #mobileColorDock .mobile-color-heading h3{font-size:12px;margin:0}
+  #mobileColorDock .mobile-color-heading button{width:32px;min-width:32px;height:32px;min-height:32px;padding:6px}
+  #mobileColorDock .suggested-swatches{grid-template-columns:repeat(8,minmax(0,1fr));max-width:320px}
+  #mobileColorDock .suggested-swatches button:before{inset:auto;left:50%;top:50%;transform:translate(-50%,-50%);width:24px;height:24px}
+  #mobileColorDock .palette-custom{margin-top:4px}
+  #mobileColorDock .rainbow-color{width:24px;height:24px}
+  #mobileColorDock #customColorPicker{max-width:244px;margin-inline:auto}
+}
+.mobile-canvas-controls{display:none}
+@media(max-width:650px){
+  body.mobile-editor .mobile-canvas-controls{display:block;position:absolute;left:8px;bottom:8px;z-index:40;max-width:calc(100% - 16px);pointer-events:none}
+  .mobile-canvas-controls .canvas-info{position:static;transform:none;font-size:12px;line-height:20px;gap:4px;padding:0 4px 0 10px;border:0;border-radius:0;background:transparent;box-shadow:none;pointer-events:auto}
+  .mobile-canvas-controls .canvas-info .icon-button{width:44px;min-width:44px;height:44px;min-height:44px;padding:12px}
 }
