@@ -11,10 +11,10 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js https://us-assets.i.posthog.com/static/array.js 'sha256-UF09mG0k8wJTVuy6vrpBtaMgcgcZkTFCUw3t79ejUH0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src https://cloudflareinsights.com https://us.i.posthog.com; object-src 'none'; base-uri 'none'; form-action 'none'"
+      content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js https://us-assets.i.posthog.com/static/array.js 'sha256-UF09mG0k8wJTVuy6vrpBtaMgcgcZkTFCUw3t79ejUH0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://bgmimg.anibt.net; font-src 'self' data:; connect-src 'self' https://bgmapi.anibt.net https://bgmimg.anibt.net https://cloudflareinsights.com https://us.i.posthog.com; object-src 'none'; base-uri 'none'; form-action 'none'"
     />
     <title>QuestMaker · 制作你的创意问卷</title>
-    <link rel="stylesheet" href="./styles.css?v=20261028-mobile-controls2" />
+    <link rel="stylesheet" href="./styles.css?v=20261125-free-relay15" />
     <script defer src="./vendor/lucide.min.js"></script>
     <script defer src="./vendor/html2canvas.min.js"></script>
     <script defer src="./vendor/iro.min.js"></script>
@@ -22,7 +22,10 @@
     <script defer src="./draft-store.js"></script>
     <script defer src="./fonts.js?v=20261028-home-palette2"></script>
     <script defer src="./canvas-patterns.js"></script>
-    <script defer src="./app.js?v=20261028-mobile-controls2"></script>
+    <script defer src="./relation-layout.js?v=20261125-free-relay15"></script>
+    <script defer src="./relation-order.js?v=20261125-free-relay15"></script>
+    <script defer src="./bangumi-import.js?v=20261125-free-relay15"></script>
+    <script defer src="./app.js?v=20261125-free-relay15"></script>
     <script defer src="./analytics.js"></script>
   </head>
   <body>
@@ -139,12 +142,10 @@
         </div>
         <div class="tool-group extra-tools">
           <button id="addText"><i data-lucide="type"></i>添加文本框</button>
-          <button id="toggleTitleFrame" class="title-frame-switch" role="switch" aria-checked="true" hidden>
-            <span id="titleFrameState">标题框显示中</span><span class="switch-track" aria-hidden="true"></span>
-          </button>
           <button id="linkMode" hidden>
             <i data-lucide="move-up-right"></i>连线
           </button>
+          <input id="linkDrawColor" type="color" aria-label="新连线颜色" value="#29272d" hidden>
         </div>
         <div
           id="lineToolbar"
@@ -255,6 +256,13 @@
             <div id="layoutProperties">
               <section id="modeSettings" class="inspector-group" aria-labelledby="modeSettingsHeading">
                 <h2 id="modeSettingsHeading" class="inspector-group-heading">模式设置</h2>
+                <div class="mode-title-control mode-visibility-controls">
+                  <button id="toggleTitleFrame" class="toggle-field switch-field title-frame-switch" role="switch" aria-checked="true" hidden>
+                    <span id="titleFrameState">标题框</span><span class="switch-track" aria-hidden="true"></span>
+                  </button>
+                  <label id="roleNameToggle" class="toggle-field switch-field" hidden><span>角色姓名</span><input id="showLabels" type="checkbox" role="switch"><span class="switch-track" aria-hidden="true"></span></label>
+                  <label id="legendVisibilityToggle" class="toggle-field switch-field" hidden><span>颜色图例</span><input id="showLegend" type="checkbox" role="switch" checked><span class="switch-track" aria-hidden="true"></span></label>
+                </div>
                 <div id="modeProperties"></div>
               </section>
               <section id="canvasSettings" class="inspector-group" aria-labelledby="canvasSettingsHeading">
@@ -262,7 +270,6 @@
                 <div id="canvasProperties"></div>
               </section>
             </div>
-            <div class="inspector-about"><a class="credits-link" href="./about.html" target="_blank" rel="noopener noreferrer">第三方资源与许可</a></div>
           </div>
         </aside>
       </div>
@@ -431,6 +438,25 @@
           aria-label="HEX 颜色"
       /></label>
     </div>
+      <dialog id="orderPanel" class="order-drawer relation-order-dialog" aria-labelledby="orderTitle" hidden>
+        <div class="order-drawer-header"><strong id="orderTitle">角色排列</strong><div class="order-header-actions"><button id="undoOrder" class="text-button" type="button" disabled>撤销</button><button id="addRole" class="secondary" type="button" popovertarget="addRoleMenu">＋添加角色</button><button id="editRoles" class="secondary" type="button" aria-pressed="false">编辑角色</button></div><button id="closeOrder" class="primary" type="button">完成</button></div>
+        <div class="order-editor-note"><p class="drawer-hint"><span id="orderHintText">拖拽角色卡进行位置调整和排序以及交换位置。可以把关系较近的角色排在一起；把中心角色排在内环。</span></p><button id="clearOrder" class="text-button" type="button" aria-label="清空所有圈的角色">清空</button></div>
+        <div id="orderRings" class="order-rings" aria-label="所有圆环的角色"></div>
+        <p id="orderStatus" class="drawer-status" role="status" aria-live="polite"></p>
+  <div id="addRoleMenu" class="add-role-menu" popover="auto"><button id="addBlankRole" type="button">空白角色</button><button id="addExistingRole" type="button">从角色库中选择</button></div>
+  <section id="sourcePicker" class="source-picker" popover="auto" role="dialog" aria-labelledby="sourcePickerTitle"><header class="order-drawer-header"><strong id="sourcePickerTitle">从角色库中添加</strong><button class="text-button" type="button" popovertarget="sourcePicker" popovertargetaction="hide">取消</button></header><p class="drawer-hint">勾选角色后，一次添加。</p><div id="sourceRoleList" class="source-role-list"></div><div class="source-picker-footer"><p id="sourcePickerStatus" class="drawer-status" role="status" aria-live="polite"></p><button id="confirmSourceRoles" class="primary" type="button" disabled>添加（0）</button></div></section>
+        <section id="roleEditor" class="role-editor" popover="auto" role="dialog" aria-labelledby="roleEditTitle">
+          <form id="roleEditForm">
+            <div class="role-edit-heading"><strong id="roleEditTitle">编辑角色</strong><button id="cancelRoleEdit" class="text-button" type="button">取消</button></div>
+            <div id="roleEditPreview" class="role-edit-preview" aria-label="角色头像预览"></div>
+            <button id="chooseRoleImage" class="secondary" type="button">更换头像</button>
+            <label class="role-edit-name" for="roleEditName">姓名<input id="roleEditName" type="text" maxlength="80" required autocomplete="off"></label>
+            <input id="roleEditFile" type="file" accept="image/*" hidden>
+            <p id="roleEditStatus" class="drawer-status" role="status" aria-live="polite"></p>
+            <button id="saveRoleEdit" class="primary" type="submit">保存</button>
+          </form>
+        </section>
+      </dialog>
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
     <!-- PostHog official loader; initialization is gated by analytics.js. -->
     <script id="qm-posthog-bootstrap">

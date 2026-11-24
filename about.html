@@ -3,50 +3,138 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FAF8FF" />
+    <meta name="description" content="QuestMaker 使用的第三方纹路、图标、组件与字体，以及各自的许可。" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'" />
     <title>关于／第三方资源与许可 · QuestMaker</title>
-    <link rel="stylesheet" href="./styles.css?v=20261028-mobile-controls2" />
+    <link rel="stylesheet" href="./styles.css?v=20261115-about1" />
   </head>
   <body class="about-page">
-    <main class="about-content">
-      <a class="credits-link" href="./index.html">返回 QuestMaker 首页</a>
+    <a class="skip-link" href="#about-main">跳到正文</a>
+    <header class="about-header">
+      <a class="about-brand" href="./index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+          <path d="M3 9h18"></path>
+          <path d="M9 21V9"></path>
+        </svg>
+        <span>QuestMaker</span>
+        <span class="about-back">返回首页</span>
+      </a>
+    </header>
+    <main id="about-main" class="about-content" tabindex="-1">
       <h1>关于／第三方资源与许可</h1>
-      <p>QuestMaker · 制作你的创意问卷。</p>
-      <p class="secondary">© 2026 puzzleG726。QuestMaker 自有代码与第三方资源分别适用各自的许可，详见 <a href="./LICENSE">QuestMaker 许可</a>。</p>
-      <p>帮助与反馈：<a href="mailto:help@questmaker.cn">help@questmaker.cn</a></p>
+      <p class="about-lead">QuestMaker · 制作你的创意问卷。</p>
+      <p class="about-meta">© 2026 puzzleG726。QuestMaker 自有代码与第三方资源分别适用各自的许可，详见 <a href="./LICENSE">QuestMaker 许可</a>。</p>
+      <p class="about-meta">帮助与反馈：<a href="mailto:help@questmaker.cn">help@questmaker.cn</a>。指向站外的链接会在新标签页打开。</p>
 
-      <section aria-labelledby="patterns-title">
+      <nav class="about-toc" aria-label="本页章节">
+        <a href="#patterns">背景纹路</a>
+        <a href="#libraries">图标与组件</a>
+        <a href="#fonts">编辑器字体</a>
+      </nav>
+
+      <section id="patterns" aria-labelledby="patterns-title">
         <h2 id="patterns-title">背景纹路 · Hero Patterns</h2>
-        <p>背景纹路来自 <a href="https://heropatterns.com/" rel="noopener noreferrer">Hero Patterns</a>，作者 <strong>Steve Schoger</strong>，采用 <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">CC BY 4.0（署名 4.0 国际）</a>许可。</p>
-        <p>使用的纹路：Hideout、Graph Paper、Tic Tac Toe、Circuit Board、Intersecting Circles、Polka Dots。</p>
+        <p>背景纹路来自 <a href="https://heropatterns.com/" target="_blank" rel="noopener noreferrer">Hero Patterns<span class="about-external">，在新标签页打开</span></a>，作者 <strong>Steve Schoger</strong>，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0（署名 4.0 国际）<span class="about-external">，在新标签页打开</span></a>许可。</p>
+        <p>使用的纹路：</p>
+        <ul class="pattern-names">
+          <li>Hideout</li>
+          <li>Graph Paper</li>
+          <li>Tic Tac Toe</li>
+          <li>Circuit Board</li>
+          <li>Intersecting Circles</li>
+          <li>Polka Dots</li>
+        </ul>
         <p>修改说明：保留原 SVG 路径；颜色支持用户选色，整体不透明度调整为 60%，原路径自带透明度保留；编码为本地 SVG，用于画布平铺与图片导出。</p>
-        <p><a href="./vendor/hero-patterns-NOTICE.txt">纹路来源与修改记录</a> · <a href="https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans" rel="noopener noreferrer">许可全文</a></p>
+        <p><a href="./vendor/hero-patterns-NOTICE.txt">纹路来源与修改记录</a> · <a href="https://creativecommons.org/licenses/by/4.0/legalcode.zh-hans" target="_blank" rel="noopener noreferrer">许可全文<span class="about-external">，在新标签页打开</span></a></p>
       </section>
 
-      <section aria-labelledby="libraries-title">
+      <section id="bangumi" aria-labelledby="bangumi-title">
+        <h2 id="bangumi-title">作品与角色资料</h2>
+        <p>作品搜索及角色资料来自 <a href="https://bgm.tv/" target="_blank" rel="noopener noreferrer">Bangumi</a>。导入记录保留作品、角色编号和原资料地址，姓名与头像按同一角色记录对应；系统不推断角色之间的关系。</p>
+        <p>作品检索与头像下载使用<a href="https://bangumi.tv/group/topic/462407" target="_blank" rel="noopener noreferrer">社区提供的公开中转</a>，仅发送检索词、公开资料及图片请求，不发送账号凭据、画布或创作内容。服务由第三方维护，可用性可能变化。</p>
+        <p>数据和图片的权利说明以 <a href="https://bgm.tv/about/copyright" target="_blank" rel="noopener noreferrer">Bangumi 原站说明</a>及相应权利人的授权为准。</p>
+      </section>
+
+      <section id="libraries" aria-labelledby="libraries-title">
         <h2 id="libraries-title">图标与浏览器组件</h2>
-        <ul>
-          <li><a href="https://github.com/lucide-icons/lucide">Lucide 1.8.0</a>：图标。ISC 许可，部分 Feather 衍生图标为 MIT 许可。<a href="./vendor/lucide-LICENSE">许可与版权声明</a></li>
-          <li><a href="https://html2canvas.hertzen.com/">html2canvas 1.4.1</a>：画布图片生成，作者 Niklas von Hertzen。<a href="./vendor/html2canvas-LICENSE">MIT 许可与版权声明</a></li>
-          <li><a href="https://iro.js.org/">iro.js 5.5.2</a>：自定义选色器，作者 James Daniel。<a href="./vendor/iro-LICENSE">MPL-2.0 许可</a>，<a href="https://github.com/jaames/iro.js/tree/v5.5.2">对应源码</a></li>
+        <ul class="credit-list">
+          <li>
+            <p class="credit-name"><a href="https://github.com/lucide-icons/lucide" target="_blank" rel="noopener noreferrer">Lucide 1.8.0<span class="about-external">，在新标签页打开</span></a></p>
+            <p class="credit-detail">图标。ISC 许可，部分 Feather 衍生图标为 MIT 许可。</p>
+            <p class="credit-detail"><a href="./vendor/lucide-LICENSE">许可与版权声明</a></p>
+          </li>
+          <li>
+            <p class="credit-name"><a href="https://html2canvas.hertzen.com/" target="_blank" rel="noopener noreferrer">html2canvas 1.4.1<span class="about-external">，在新标签页打开</span></a></p>
+            <p class="credit-detail">画布图片生成，作者 Niklas von Hertzen。</p>
+            <p class="credit-detail"><a href="./vendor/html2canvas-LICENSE">MIT 许可与版权声明</a></p>
+          </li>
+          <li>
+            <p class="credit-name"><a href="https://iro.js.org/" target="_blank" rel="noopener noreferrer">iro.js 5.5.2<span class="about-external">，在新标签页打开</span></a></p>
+            <p class="credit-detail">自定义选色器，作者 James Daniel。</p>
+            <p class="credit-detail"><a href="./vendor/iro-LICENSE">MPL-2.0 许可</a> · <a href="https://github.com/jaames/iro.js/tree/v5.5.2" target="_blank" rel="noopener noreferrer">对应源码<span class="about-external">，在新标签页打开</span></a></p>
+          </li>
         </ul>
         <p><a href="./vendor/README.md">浏览器资源版本与来源记录</a></p>
       </section>
 
-      <section aria-labelledby="fonts-title">
+      <section id="fonts" aria-labelledby="fonts-title">
         <h2 id="fonts-title">编辑器字体</h2>
         <p>字体本地按需加载，各字体保留独立许可。部分分片由 ZeoSeven Fonts 分发，怪盗予告黑体分片由原字体生成。</p>
         <p>当前提供 Isemin（繁中）、明源、源流明体、金字社真好体与怪盗予告黑体；以下旧字体文件也保留以兼容已有草稿。</p>
-        <ul>
-          <li><a href="https://fonts.zeoseven.com/items/320/">金字社真好体</a>：Beijing Founder Electronics Co.,Ltd.／JIN Liuqing，基于抖音美好体。<a href="./vendor/fonts/JinzisheZhenhao-LICENSE.txt">SIL OFL 1.1 与版权声明</a>。</li>
-          <li><a href="https://www.100font.com/thread-1890.htm">怪盗予告黑体</a>：lavsic，基于思源黑体／思源宋体，字体内保留 Adobe 版权及 Source 保留名称声明。<a href="./vendor/fonts/KaitouYokokuGothic-LICENSE.txt">SIL OFL 1.1 与版权声明</a>，<a href="https://lavsic.booth.pm/items/7920588">作者页面</a>。本地生成 Unicode WOFF2 分片，未修改字形设计。</li>
-          <li>Mitimasu／道须手写体（旧草稿兼容）：MASUDA mitiya（增田道也），<a href="./vendor/fonts/Mitimasu-LICENSE.txt">MIT</a>。</li>
-          <li>Isemin／异世明（繁中）：FLOP DESIGN，源自 Source，<a href="./vendor/fonts/OFL-1.1.txt">SIL OFL 1.1</a>。</li>
-          <li>PixelMplus12（旧草稿兼容）：itouhiro／M+ FONTS PROJECT，<a href="./vendor/fonts/PixelMplus-LICENSE.txt">M+ FONT LICENSE</a>。</li>
-          <li>Minh Nguyen／明源：TKYK_nkl／Han-Nom Revival Committee，<a href="./vendor/fonts/OFL-1.1.txt">SIL OFL 1.1</a>。</li>
-          <li>Tanugo-S-TTF（旧草稿兼容）：Tanukizamurai／The Tanugo Project Authors，<a href="./vendor/fonts/OFL-1.1.txt">SIL OFL 1.1</a>。</li>
-          <li>Kaibunsyo／怪闻书（旧草稿兼容）：lavsic，<a href="./vendor/fonts/OFL-1.1.txt">SIL OFL 1.1</a>。</li>
-          <li>GenRyuMin2 TC／源流明体丹：ButTaiwan，<a href="./vendor/fonts/GenRyu-LICENSE.txt">SIL OFL 1.1</a>。</li>
+
+        <h3>当前可选</h3>
+        <ul class="credit-list">
+          <li>
+            <p class="credit-name"><a href="https://fonts.zeoseven.com/items/320/" target="_blank" rel="noopener noreferrer">金字社真好体<span class="about-external">，在新标签页打开</span></a></p>
+            <p class="credit-detail">Beijing Founder Electronics Co.,Ltd.／JIN Liuqing，基于抖音美好体。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/JinzisheZhenhao-LICENSE.txt">金字社真好体的 SIL OFL 1.1 与版权声明</a></p>
+          </li>
+          <li>
+            <p class="credit-name"><a href="https://www.100font.com/thread-1890.htm" target="_blank" rel="noopener noreferrer">怪盗予告黑体<span class="about-external">，在新标签页打开</span></a></p>
+            <p class="credit-detail">lavsic，基于思源黑体／思源宋体，字体内保留 Adobe 版权及 Source 保留名称声明。本地生成 Unicode WOFF2 分片，未修改字形设计。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/KaitouYokokuGothic-LICENSE.txt">怪盗予告黑体的 SIL OFL 1.1 与版权声明</a> · <a href="https://lavsic.booth.pm/items/7920588" target="_blank" rel="noopener noreferrer">作者页面<span class="about-external">，在新标签页打开</span></a></p>
+          </li>
+          <li>
+            <p class="credit-name">Isemin／异世明（繁中）</p>
+            <p class="credit-detail">FLOP DESIGN，源自 Source。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/OFL-1.1.txt">Isemin 的 SIL OFL 1.1</a></p>
+          </li>
+          <li>
+            <p class="credit-name">Minh Nguyen／明源</p>
+            <p class="credit-detail">TKYK_nkl／Han-Nom Revival Committee。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/OFL-1.1.txt">明源的 SIL OFL 1.1</a></p>
+          </li>
+          <li>
+            <p class="credit-name">GenRyuMin2 TC／源流明体丹</p>
+            <p class="credit-detail">ButTaiwan。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/GenRyu-LICENSE.txt">源流明体的 SIL OFL 1.1</a></p>
+          </li>
+        </ul>
+
+        <h3>旧草稿兼容</h3>
+        <ul class="credit-list">
+          <li>
+            <p class="credit-name">Mitimasu／道须手写体</p>
+            <p class="credit-detail">MASUDA mitiya（增田道也）。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/Mitimasu-LICENSE.txt">Mitimasu 的 MIT 许可</a></p>
+          </li>
+          <li>
+            <p class="credit-name">PixelMplus12</p>
+            <p class="credit-detail">itouhiro／M+ FONTS PROJECT。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/PixelMplus-LICENSE.txt">M+ FONT LICENSE</a></p>
+          </li>
+          <li>
+            <p class="credit-name">Tanugo-S-TTF</p>
+            <p class="credit-detail">Tanukizamurai／The Tanugo Project Authors。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/OFL-1.1.txt">Tanugo 的 SIL OFL 1.1</a></p>
+          </li>
+          <li>
+            <p class="credit-name">Kaibunsyo／怪闻书</p>
+            <p class="credit-detail">lavsic。</p>
+            <p class="credit-detail"><a href="./vendor/fonts/OFL-1.1.txt">怪闻书的 SIL OFL 1.1</a></p>
+          </li>
         </ul>
         <p><a href="./vendor/fonts/NOTICE.txt">完整字体来源、版权与修改记录</a></p>
       </section>
