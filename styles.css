@@ -1244,3 +1244,9 @@ body:has(#editorView:not([hidden])) #homeLinks{display:none}
 .work-examples>span{color:var(--muted);margin-right:4px}
 .work-examples button{flex:none;min-height:32px;margin:0;padding:4px 6px;border:0;background:transparent;color:var(--accent);font-size:inherit;font-weight:500;white-space:nowrap}
 .work-examples button:hover{background:var(--lavender)}
+
+/* Keep fallback rules separate from unsupported :popover-open selectors. */
+html.qm-popover-fallback [popover]:not(.qm-popover-open){display:none}
+html.qm-popover-fallback [popover].qm-popover-open{display:block;z-index:1200}
+html.qm-popover-fallback .line-toolbar .line-control-popover.qm-popover-open{display:flex}
+html.qm-popover-fallback .source-picker.qm-popover-open{display:flex;flex-direction:column}
